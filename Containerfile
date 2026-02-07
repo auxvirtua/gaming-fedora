@@ -10,14 +10,6 @@
 FROM ghcr.io/ublue-os/silverblue-main:latest
 
 # -----------------------------------------------------------------------------
-# RPM Fusion repos (needed for NVIDIA drivers, codecs, Steam, etc.)
-# -----------------------------------------------------------------------------
-RUN rpm-ostree install \
-    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
-    rpm-ostree cleanup -m
-
-# -----------------------------------------------------------------------------
 # NVIDIA open kernel modules + proprietary userspace
 # (Open kernel modules are the default/only option for Blackwell GPUs)
 # -----------------------------------------------------------------------------
