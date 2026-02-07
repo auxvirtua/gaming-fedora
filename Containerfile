@@ -24,22 +24,6 @@ RUN rpm-ostree install \
     rpm-ostree cleanup -m
 
 # -----------------------------------------------------------------------------
-# 1Password (desktop app + CLI)
-# -----------------------------------------------------------------------------
-RUN rpm --import https://downloads.1password.com/linux/keys/1password.asc && \
-    printf '[1password]\nname=1Password Stable Channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://downloads.1password.com/linux/keys/1password.asc\n' > /etc/yum.repos.d/1password.repo && \
-    rpm-ostree install 1password 1password-cli && \
-    rpm-ostree cleanup -m
-
-# -----------------------------------------------------------------------------
-# VS Code
-# -----------------------------------------------------------------------------
-RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
-    printf '[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc\n' > /etc/yum.repos.d/vscode.repo && \
-    rpm-ostree install code && \
-    rpm-ostree cleanup -m
-
-# -----------------------------------------------------------------------------
 # Quality of life packages
 # -----------------------------------------------------------------------------
 RUN rpm-ostree install \
