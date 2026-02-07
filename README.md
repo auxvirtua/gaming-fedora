@@ -49,7 +49,7 @@ podman push ghcr.io/YOURUSERNAME/gaming-fedora:latest
 
 The included GitHub Actions workflow rebuilds the image:
 - Every Monday at 6am UTC
-- On every push to `main`
+- On every push to `master`
 - Manually via the Actions tab ("Run workflow")
 
 ## Checking for Updates Manually
