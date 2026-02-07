@@ -1,0 +1,14 @@
+[Unit]
+Description=Nightly check for bootc image updates
+Documentation=man:bootc(8)
+
+[Timer]
+# Check every night at 4:00 AM (with up to 30 min random jitter)
+OnCalendar=*-*-* 04:00:00
+RandomizedDelaySec=30m
+
+# If the machine was off at 4am, run on next boot
+Persistent=true
+
+[Install]
+WantedBy=timers.target

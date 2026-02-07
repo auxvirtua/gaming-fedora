@@ -1,0 +1,13 @@
+[Unit]
+Description=Fetch and stage bootc updates (no automatic reboot)
+Documentation=man:bootc(8)
+ConditionPathExists=/run/ostree-booted
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bootc upgrade
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=bootc-fetch-updates
