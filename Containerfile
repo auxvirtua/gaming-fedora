@@ -15,8 +15,8 @@ FROM ghcr.io/ublue-os/silverblue-main:latest
 # -----------------------------------------------------------------------------
 RUN rpm-ostree install \
     akmod-nvidia \
-    xorg-x11-drv-nvidia \
-    xorg-x11-drv-nvidia-cuda \
+    nvidia-driver \
+    nvidia-driver-cuda \
     libva-nvidia-driver && \
     rpm-ostree cleanup -m
 
@@ -25,7 +25,6 @@ RUN rpm-ostree install \
 # -----------------------------------------------------------------------------
 RUN rpm-ostree install \
     steam \
-    discord \
     lutris \
     mangohud \
     gamemode \
@@ -83,6 +82,11 @@ COPY etc/security/limits.d/99-gaming.conf /etc/security/limits.d/99-gaming.conf
 # Flathub remote for Flatpak apps (OBS, ProtonUp-Qt, browsers, etc.)
 # -----------------------------------------------------------------------------
 RUN flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# -----------------------------------------------------------------------------
+# Flatpak apps (pre-installed)
+# -----------------------------------------------------------------------------
+RUN flatpak install -y flathub com.discordapp.Discord
 
 # -----------------------------------------------------------------------------
 # Automatic updates: fetch + stage nightly, but NEVER auto-reboot
