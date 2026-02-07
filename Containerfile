@@ -19,7 +19,6 @@ RUN rpm-ostree install \
     gamemode \
     gamescope \
     vulkan-tools \
-    mesa-vulkan-drivers \
     wine \
     winetricks && \
     rpm-ostree cleanup -m
@@ -47,8 +46,7 @@ RUN rpm-ostree install \
     htop \
     fastfetch \
     fish \
-    distrobox \
-    flatpak && \
+    distrobox && \
     rpm-ostree cleanup -m
 
 # -----------------------------------------------------------------------------
@@ -58,12 +56,7 @@ COPY etc/sysctl.d/99-gaming.conf /etc/sysctl.d/99-gaming.conf
 COPY etc/security/limits.d/99-gaming.conf /etc/security/limits.d/99-gaming.conf
 
 # -----------------------------------------------------------------------------
-# Flathub remote for Flatpak apps (OBS, ProtonUp-Qt, browsers, etc.)
-# -----------------------------------------------------------------------------
-RUN flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-# -----------------------------------------------------------------------------
-# Flatpak apps (pre-installed)
+# Flatpak apps (pre-installed via Flathub, already configured in base image)
 # -----------------------------------------------------------------------------
 RUN flatpak install -y flathub com.discordapp.Discord
 
