@@ -25,16 +25,6 @@ RUN rpm-ostree install \
     rpm-ostree cleanup -m
 
 # -----------------------------------------------------------------------------
-# Multimedia codecs
-# -----------------------------------------------------------------------------
-RUN rpm-ostree install \
-    ffmpeg \
-    gstreamer1-plugins-bad-free \
-    gstreamer1-plugins-ugly \
-    gstreamer1-plugin-libav && \
-    rpm-ostree cleanup -m
-
-# -----------------------------------------------------------------------------
 # 1Password (desktop app + CLI)
 # -----------------------------------------------------------------------------
 RUN rpm --import https://downloads.1password.com/linux/keys/1password.asc && \
