@@ -1,24 +1,13 @@
 # =============================================================================
 # Gaming Fedora - Custom Immutable Gaming OS
-# Based on Fedora Silverblue (GNOME)
+# Based on Fedora Silverblue with NVIDIA (GNOME)
 # =============================================================================
 # Build:  podman build -t ghcr.io/YOURUSERNAME/gaming-fedora:latest .
 # Push:   podman push ghcr.io/YOURUSERNAME/gaming-fedora:latest
 # Rebase: rpm-ostree rebase ostree-unverified-registry:ghcr.io/YOURUSERNAME/gaming-fedora:latest
 # =============================================================================
 
-FROM ghcr.io/ublue-os/silverblue-main:latest
-
-# -----------------------------------------------------------------------------
-# NVIDIA open kernel modules + proprietary userspace
-# (Open kernel modules are the default/only option for Blackwell GPUs)
-# -----------------------------------------------------------------------------
-RUN rpm-ostree install \
-    akmod-nvidia \
-    nvidia-driver \
-    nvidia-driver-cuda \
-    libva-nvidia-driver && \
-    rpm-ostree cleanup -m
+FROM ghcr.io/ublue-os/silverblue-nvidia:latest
 
 # -----------------------------------------------------------------------------
 # Gaming: Steam, Lutris, tools, and Proton helpers
